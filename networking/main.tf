@@ -46,3 +46,14 @@ resource "aws_default_route_table" "mtc_private_rt" {
     Name = "mtc-private"
   }
 }
+
+resource "aws_subnet" "public_subnet" {
+  vpc_id                  = aws_vpc.mtc_vpc.id
+  cidr_block              = var.public_cidrs
+  map_public_ip_on_launch = true
+  availability_zone       = var.availability_zone
+
+  tags = {
+    Name = "mtc-public-subnet"
+  }
+}
